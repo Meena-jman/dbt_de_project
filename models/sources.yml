@@ -1,0 +1,35 @@
+version: 2
+
+sources:
+  - name: sales
+    database: DE_PROJECT
+    schema: raw
+    tables:
+      - name: CUSTOMERS
+        description: "This table contains customer information."
+        
+      - name: DEVICES
+        description: "This table contains device information."
+
+      - name: SALESORDERS
+        description: "This table contains sales order information."
+
+      - name: SALESORDERLINES
+        description: "This table contains sales order line information."
+
+      - name: INVOICE
+        description: "This table contains invoice information."
+
+      - name: INVOICELINE
+        description: "This table contains invoice line information."
+        
+      - name: PRODUCTGROUP
+        description: "This table contains product group information."
+
+      - name: PURCHASEORDERLINE
+        description: "This table contains purchase order line information."
+
+      - name: PURCHASEORDERS
+        description: "This table contains purchase order information."
+
+      
