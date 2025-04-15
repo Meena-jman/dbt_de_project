@@ -9,7 +9,8 @@ AS(
         PROJECT_NUMBER
 )
 SELECT
-    *
+    *,
+    {{margin_profit_or_loss('GROSS_PROJECT_REVENUE')}} AS MARGIN_PROFIT_OR_LOSS
 FROM
     REVENUE_PER_PROJECT
 ORDER BY

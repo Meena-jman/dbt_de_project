@@ -1,0 +1,49 @@
+WITH INVOICE_JOIN_PRODUCT
+AS(
+    SELECT
+        ITEM_CODE,
+        PRODUCT_GROUP,
+        PRODUCT_TYPE,
+        SUM(ITEM_PRICE) AS MONTHLY_ITEM_PRICE,
+        DATE_TRUNC("MONTH",INVOICE_DATE) AS INVOICE_DATE
+    FROM 
+        {{ ref('transform_product_invoice') }}
+    GROUP BY
+        ITEM_CODE,
+        PRODUCT_GROUP,
+        PRODUCT_TYPE,
+        DATE_TRUNC("MONTH",INVOICE_DATE)
+),
+PURCHASE_INVOICE
+AS(
+    SELECT
+        IL.ITEM_CODE,
+        PRODUCT_GROUP,
+        PRODUCT_TYPE,
+        MONTHLY_ITEM_PRICE,
+        AVG_BUYING_PRICE
+    FROM
+        {{ ref('transform_margin_sales') }} AS TM
+    JOIN
+        INVOICE_JOIN_PRODUCT AS IL
+    ON
+        IL.ITEM_CODE = TM.ITEM_CODE
+    AND 
+        IL.INVOICE_DATE = TM.ORDER_DATE
+),
+PRODUCT_GROUP_TYPE
+AS(
+    SELECT 
+        PRODUCT_GROUP,
+        PRODUCT_TYPE,
+        {{ profit_margin_percentage('SUM(MONTHLY_ITEM_PRICE)', 'SUM(AVG_BUYING_PRICE)') }} AS MARGIN_VALUE
+    FROM 
+        PURCHASE_INVOICE 
+    GROUP BY 
+        PRODUCT_GROUP,
+        PRODUCT_TYPE
+)
+SELECT 
+    * 
+FROM 
+    PRODUCT_GROUP_TYPE
