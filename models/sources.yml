@@ -6,30 +6,30 @@ sources:
     schema: raw
     tables:
       - name: CUSTOMERS
-        description: "This table contains customer information."
+        description: "This table contains customer information such as their name,id,accountbalance."
         
       - name: DEVICES
         description: "This table contains device information."
 
       - name: SALESORDERS
-        description: "This table contains sales order information."
+        description: "This table contains sales order information such asOrderid,Projectnumber,Orderdate,Netvalue,Taxvalue,Deliverydate."
 
       - name: SALESORDERLINES
-        description: "This table contains sales order line information."
+        description: "This table contains sales order line information such as Orderid,Oderlineid,Orderlinetype,Quantity,Taxvalue,Totalvalue."
 
       - name: INVOICE
-        description: "This table contains invoice information."
+        description: "This table contains invoice information such as Invoice id,Customer id,iIvoicetaxvalue,Invoicenetvalue."
 
       - name: INVOICELINE
-        description: "This table contains invoice line information."
+        description: "This table contains invoice line information such as Invoicelineid,Invoice id,Invoice quantity,Itemcode,Itempricelinetaxvalue,Linetotalvalue."
         
       - name: PRODUCTGROUP
-        description: "This table contains product group information."
+        description: "This table contains product group information suh as Itemid,Productgroup,Productgroupid,Producttype."
 
       - name: PURCHASEORDERLINE
-        description: "This table contains purchase order line information."
+        description: "This table contains purchase order line information such as Purchaseorderid,Purchaseorderlineid,Itemcode,Singleunitbuyingprice,Quantity."
 
       - name: PURCHASEORDERS
-        description: "This table contains purchase order information."
+        description: "This table contains purchase order information such as Purchaseorderid,Purchaseordernumber,Purchaseorderdate."
 
       
